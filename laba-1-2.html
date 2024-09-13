@@ -1,0 +1,20 @@
+<html>
+    
+<body>
+    <script>
+        (function () {
+            document.write("<table>");
+            for (var i = 1; i <= 10; i += 1) {
+                document.write("<tr>")
+                for (var j = 1; j <= 10; j += 1) {
+                    document.write("<td style=\"border: 1px ridge;\">" + (i * j) + "</td>");
+
+                }
+                document.write("</tr>");
+            }
+            document.write("<table>");
+        } ());
+    </script>
+</body>
+
+</html>
