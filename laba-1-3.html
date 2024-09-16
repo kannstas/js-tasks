@@ -1,0 +1,20 @@
+<html>
+    
+<body>
+    <script>
+        (function () {
+            "use strict";
+            var day = prompt("Введите день");
+            var last = day[day.length-1];
+            if(last == "1") {
+                alert("До конца вашей учебы остается " + day  + " день.");
+            } else if (last== "2" || last == "3") {
+                alert("До конца вашей учебы остается " + day  + " дня.")
+            } else {
+                alert("До конца вашей учебы остается " + day  + " дней.")
+            }
+        }());
+    </script>
+</body>
+
+</html>

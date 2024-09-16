@@ -1,0 +1,21 @@
+<html>
+
+<body>
+    <script>
+        (function () {
+            "use strict";
+
+            function NewClass(title, url) {
+                this.title = title;
+                this.url = url;
+            };
+
+            NewClass.prototype.show = function () { document.write(this.title  + " " + this.url); };
+
+            var myClass = new NewClass("My class", "https://www.my-class.ru");
+            myClass.show();
+        }());
+    </script>
+</body>
+
+</html>
