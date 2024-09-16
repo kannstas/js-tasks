@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>Танцующий котик</title>
+    </head>
+    <body>
+        <img  id="cat-mem" src="/Users/itprofil/Downloads/cat-mem.gif" width="300" onclick="changeCatSize()">
+        <script>
+            function changeCatSize () {
+                 "use strict";
+                var cat = document.getElementById("cat-mem");
+                if(cat.width == "300") {
+                    cat.width = "600";
+                }else if (cat.width == "600") {
+                    cat.width = "300";
+                }
+            };
+        </script>
+    </body>
+</html>
