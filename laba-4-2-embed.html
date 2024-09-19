@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+<script>
+
+    (function () {
+        "use strict";
+        if (!Modernizr.svg) {
+            document.write(" Вы видите это сообщение, потому что ваш браузер не поддерживает отображение SVG.");
+        }
+    });
+
+</script>
+
+<body>
+    <embed src="circle.svg" width="300" height="300" type="image/svg+xml">
+</body>
+
+</html>

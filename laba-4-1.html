@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="400" height="250"></canvas>
+</body>
+<script>
+    (function () {
+        "use strict";
+        var canvas = document.getElementById("canvas");
+        if (Modernizr.canvas) {
+            var context = canvas.getContext("2d");
+            var gradient = context.createLinearGradient(50, 30, 150, 150);
+            gradient.addColorStop(0, "DeepPink");
+            gradient.addColorStop(0.50, "MediumPurple");
+            gradient.addColorStop(0.75, "SpringGreen");
+            gradient.addColorStop(0.90, "GreenYellow");
+            gradient.addColorStop(1, "Yellow");
+            context.fillStyle = gradient;
+            context.fillRect(50, 30, 150, 150);
+            context.strokeRect(50, 30, 150, 150);
+        } else {
+            document.write("Вы видите это сообщение, потому что ваш браузер не поддерживает элементы canvas.");
+        }
+    }());
+</script>
+
+</html>

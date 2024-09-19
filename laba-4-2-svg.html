@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+<script>
+
+    (function () {
+        "use strict";
+        if (!Modernizr.svg) {
+            document.write(" Вы видите это сообщение, потому что ваш браузер не поддерживает отображение SVG.");
+        }
+    });
+
+</script>
+
+<body>
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="150" cy="150" r="100" fill="red" />
+        <text x="150" y="150" font-size="20" text-anchor="middle" fill="white">My circle</text>
+    </svg>
+</body>
+
+</html>
