@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Отзывы - Салон красоты</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <style>
+        #dropZone {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #imagePreview {
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 200px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Отзывы</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="price.html">Прайс</a></li>
+                <li><a href="geolocation.html">Адреса</a></li>
+                <li><a href="advertisement.html">Реклама</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Поделитесь своими впечатлениями!</h2>
+        <div id="dropZone">Перетащите вашу фотографию здесь для загрузки</div>
+        <div id="imagePreview"></div>
+    </main>
+
+    <script>
+        "use strict";
+
+        if (!Modernizr.draganddrop) {
+            alert('Ваш браузер не поддерживает Drag and Drop API.');
+        }
+
+        const dropZone = document.getElementById('dropZone');
+        const imagePreview = document.getElementById('imagePreview');
+
+        if (dropZone && imagePreview) {
+            dropZone.ondragover = function (event) {
+                event.preventDefault();
+                dropZone.style.backgroundColor = '#e0e0e0';
+            };
+
+            dropZone.ondragleave = function () {
+                dropZone.style.backgroundColor = '';
+            };
+
+            dropZone.ondrop = function (event) {
+                event.preventDefault();
+                dropZone.style.backgroundColor = '';
+
+                const files = event.dataTransfer.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            imagePreview.appendChild(img);
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        alert('Пожалуйста, загрузите изображение.');
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

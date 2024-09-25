@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Услуги - Салон красоты</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Выберите услуги</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="price.html">Прайс</a></li>
+                <li><a href="geolocation.html">Адреса</a></li>
+                <li><a href="reviews.html">Фотографии клиентов</a></li>
+                <li><a href="advertisement.html">Реклама</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Доступные косметические процедуры</h2>
+        <form id="servicesForm">
+            <label>
+                <input type="checkbox" value="Стрижка"> Стрижка - 500 руб.
+            </label><br>
+            <label>
+                <input type="checkbox" value="Окрашивание"> Окрашивание - 1500 руб.
+            </label><br>
+            <label>
+                <input type="checkbox" value="Маникюр"> Маникюр - 800 руб.
+            </label><br>
+            <label>
+                <input type="checkbox" value="Педикюр"> Педикюр - 1000 руб.
+            </label><br>
+            <button type="button" id="saveServices">Сохранить выбор</button>
+        </form>
+        <p id="message"></p>
+    </main>
+
+    <script>
+        "use strict";
+        if (!Modernizr.localstorage) {
+            alert('Ваш браузер не поддерживает Web Storage.');
+        }
+
+        window.onload = function () {
+            const selectedServices = JSON.parse(localStorage.getItem('selectedServices')) || [];
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (selectedServices.includes(checkbox.value)) {
+                    checkbox.checked = true;
+                }
+            });
+        };
+
+        document.getElementById('saveServices').onclick = function () {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const selectedServices = [];
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedServices.push(checkbox.value);
+                }
+            });
+            localStorage.setItem('selectedServices', JSON.stringify(selectedServices));
+            document.getElementById('message').innerText = 'Ваш выбор сохранен!';
+        };
+    </script>
+</body>
+
+</html>

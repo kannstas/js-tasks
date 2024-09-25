@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Форма с проверкой</title>
+    <style>
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 150px;
+        }
+
+        .required:before {
+            content: "✘";
+            color: red;
+            margin-left: 5px;
+        }
+
+        .optional:before {
+            content: "✔";
+            color: green;
+            margin-left: 5px;
+        }
+
+        input:valid+.required:before {
+            content: "✔";
+            color: green;
+        }
+
+        input:invalid+.required:before {
+            content: "✘";
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Пожалуйста, заполните обязательные поля.</h2>
+
+    <form id="myForm">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required>
+        <span class="required"></span>
+        <br>
+
+        <label for="age">Возраст:</label>
+        <input type="number" id="age" name="age">
+        <span class="optional"></span>
+        <br>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+        <span class="required"></span>
+        <br>
+
+        <label for="website">Сайт:</label>
+        <input type="url" id="website" name="website">
+        <span class="optional"></span>
+        <br>
+
+        <button type="submit">Отправить</button>
+    </form>
+
+</body>
+
+</html>

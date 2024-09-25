@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Геолокация - Салон красоты</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Предоставьте нам вашу геолокацию</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="price.html">Прайс</a></li>
+                <li><a href="reviews.html">Фотографии клиентов</a></li>
+                <li><a href="advertisement.html">Реклама</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <p>Чтобы мы могли подобрать вам ближайший салон, пожалуйста, предоставьте доступ к вашей геолокации.</p>
+        <button id="getLocation">Получить геолокацию</button>
+        <p id="locationMessage"></p>
+    </main>
+
+    <script>
+        "use strict";
+        document.getElementById('getLocation').onclick = function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById('locationMessage').innerText = "Геолокация не поддерживается вашим браузером.";
+            }
+        };
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            document.getElementById('locationMessage').innerText = `Ваши координаты: Широта ${latitude}, Долгота ${longitude}.`;
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById('locationMessage').innerText = "Запрос на получение вашей геолокации был отклонен.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById('locationMessage').innerText = "Информация о местоположении недоступна.";
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById('locationMessage').innerText = "Запрос на получение вашей геолокации истек.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById('locationMessage').innerText = "Произошла неизвестная ошибка.";
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

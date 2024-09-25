@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Drag and Drop Example</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            cursor: move;
+        }
+
+        .dropzone {
+            width: 300px;
+            height: 300px;
+            background-color: #e0e0e0;
+            border: 2px dashed #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="dropzone" id="dropzone1">Перетащите сюда</div>
+        <div class="dropzone" id="dropzone2">Перетащите сюда</div>
+    </div>
+
+    <div class="container">
+        <div class="box" draggable="true" id="box1">Блок 1</div>
+        <div class="box" draggable="true" id="box2">Блок 2</div>
+        <div class="box" draggable="true" id="box3">Блок 3</div>
+    </div>
+
+    <script>
+        "use strict";
+        if (Modernizr.draganddrop) {
+            const boxes = document.querySelectorAll('.box');
+            const dropzones = document.querySelectorAll('.dropzone');
+
+            if(boxes && dropzones) {
+            boxes.forEach(box => {
+                box.addEventListener('dragstart', dragStart);
+                box.addEventListener('dragend', dragEnd);
+            });
+
+            dropzones.forEach(dropzone => {
+                dropzone.addEventListener('dragover', dragOver);
+                dropzone.addEventListener('drop', drop);
+            });
+        }
+            function dragStart(event) {
+                event.dataTransfer.setData('text/plain', event.target.id);
+                event.target.classList.add('dragging');
+            }
+
+            function dragEnd(event) {
+                event.target.classList.remove('dragging');
+            }
+
+            function dragOver(event) {
+                event.preventDefault();
+            }
+
+            function drop(event) {
+                event.preventDefault();
+                const id = event.dataTransfer.getData('text/plain');
+                const box = document.getElementById(id);
+
+                if (box) {
+                    event.target.appendChild(box);
+                }
+            }
+        } else {
+            alert('Ваш браузер не поддерживает Drag and Drop API.');
+        }
+    </script>
+
+</body>
+
+</html>

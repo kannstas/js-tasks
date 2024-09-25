@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <title>Галерея - Салон красоты</title>
+</head>
+
+<body>
+    <header>
+        <h1>Галерея</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="geolocation.html">Адреса</a></li>
+                <li><a href="reviews.html">Фотографии клиентов</a></li>
+                <li><a href="advertisement.html">Реклама</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Наш прайс</h2>
+        <canvas id="myCanvas" width="1080" height="1920"></canvas>
+        <script>
+            (function () {
+                "use strict";
+                if (!Modernizr.canvas) {
+                    alert("Вы видите это сообщение, потому что ваш браузер не поддерживает элементы canvas.");
+                }
+                const canvas = document.getElementById('myCanvas');
+                if (canvas) {
+                    const context = canvas.getContext('2d');
+                    const base_image = new Image();
+                    base_image.onload = () => {
+                        context.drawImage(base_image, 0, 0);
+                    };
+                    base_image.src = 'utils/price-list.jpg';
+                }
+            }());
+        </script>
+    </main>
+</body>
+
+</html>
